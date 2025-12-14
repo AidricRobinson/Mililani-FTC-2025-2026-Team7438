@@ -1,30 +1,26 @@
 package org.firstinspires.ftc.teamcode.Commands.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Subsystems.StorageSubsystem;
-import org.firstinspires.ftc.teamcode.PIDController;
-import org.firstinspires.ftc.teamcode.Constants;
 
-public class EncoderStorageCommand {
+public class EncoderReverseStorageCommand {
     StorageSubsystem storageSubsystem;
     Telemetry telemetry;
     ElapsedTime elapsedTimed;
     double startTime;
-    public EncoderStorageCommand(StorageSubsystem storageSubsystem, Telemetry telemetry, ElapsedTime elapsedTime){
+    public EncoderReverseStorageCommand(StorageSubsystem storageSubsystem, Telemetry telemetry, ElapsedTime elapsedTime){
         this.storageSubsystem = storageSubsystem;
         this.elapsedTimed = elapsedTime;
 
     }
-    public void EncoderStorageOperate(double power){
+    public void operate(){
         startTime = elapsedTimed.milliseconds();
-        while (elapsedTimed.milliseconds() < startTime + 2000){
-            double powerOutput = power;
+        while (elapsedTimed.milliseconds() < startTime + 5000){
+            double powerOutput = -0.5;
             storageSubsystem.setStoragePower(powerOutput);
         }
-    }
-    public void shutdown(){
         storageSubsystem.shutdown();
     }
 }

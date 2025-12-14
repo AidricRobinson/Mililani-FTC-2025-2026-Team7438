@@ -43,31 +43,34 @@ public class BlueAutoPath1 extends LinearOpMode{
         encoderTurningCommand = new EncoderTurningCommand(mecanumDriveSubsystem, telemetry, this);
 
         waitForStart();
-        encoderDriveCommand.EncoderDriveOperate(700, "FORWARD");
-        encoderTurningCommand.EnocderTurningOperate(30,"RIGHT");
-        encoderDriveCommand.EncoderDriveOperate(-90, "BACKWARD");
-        encoderFlywheelCommand.EncoderFlywheelOperate(1);
-        encoderStorageCommand.EncoderStorageOperate();
+//        encoderDriveCommand.EncoderDriveOperate(700, "FORWARD");
+//        encoderTurningCommand.EnocderTurningOperate(30,"RIGHT");
+//        encoderDriveCommand.EncoderDriveOperate(-90, "BACKWARD");
+        encoderFlywheelCommand.EncoderFlywheelOperate(0.95);
+        encoderStorageCommand.EncoderStorageOperate(0.25);
         sleep(1000);
         //reload
         encoderStorageCommand.shutdown();
-        encoderTurningCommand.EnocderTurningOperate(60, "LEFT");
-        sleep(10);
-        encoderTurningCommand.EnocderTurningOperate(120, "RIGHT");
-        sleep(10);
-        encoderTurningCommand.EnocderTurningOperate(60, "LEFT");
-        encoderStorageCommand.EncoderStorageOperate();
+//        encoderTurningCommand.EnocderTurningOperate(60, "LEFT");
+        sleep(1000);
+//        encoderTurningCommand.EnocderTurningOperate(120, "RIGHT");
+//        sleep(10);
+//        encoderTurningCommand.EnocderTurningOperate(60, "LEFT");
+        encoderStorageCommand.EncoderStorageOperate(0.25);
         sleep(1000);
         //reload
         encoderStorageCommand.shutdown();
-        encoderTurningCommand.EnocderTurningOperate(60, "RIGHT");
-        sleep(10);
-        encoderTurningCommand.EnocderTurningOperate(120, "LEFT");
-        sleep(10);
-        encoderTurningCommand.EnocderTurningOperate(60, "RIGHT");
-        encoderStorageCommand.EncoderStorageOperate();
+//        encoderTurningCommand.EnocderTurningOperate(60, "RIGHT");
+        sleep(1000);
+//        encoderTurningCommand.EnocderTurningOperate(120, "LEFT");
+//        sleep(10);
+//        encoderTurningCommand.EnocderTurningOperate(60, "RIGHT");
+        encoderStorageCommand.EncoderStorageOperate(0.25);
         encoderFlywheelCommand.shutdown();
-        encoderDriveCommand.EncoderDriveOperate(50,"FORWARD");
+        encoderStorageCommand.shutdown();
+        encoderDriveCommand.EncoderDriveOperate(100, "FORWARD");
+        encoderTurningCommand.EnocderTurningOperate(70, "RIGHT");
+//        encoderDriveCommand.EncoderDriveOperate(50,"FORWARD");
 //        encoderFlywheelCommand.EncoderFlywheelOperate(1);
 //        encoderStorageCommand.EncoderStorageOperate();
 // Hii!!! :D

@@ -80,7 +80,8 @@ public class MecanumDriveSubsystem {
         else if(gamepad.x){
             toggle = true;
         }
-        if (toggle) {
+        if (gamepad.right_trigger > 0.2) {
+
             leftFront.setPower((-rotY+rotX+rx) / denominator * 0.5);
             leftBack.setPower((-rotY-rotX+rx) / denominator * 0.5);
             rightFront.setPower((-rotY-rotX-rx) / denominator * 0.5);

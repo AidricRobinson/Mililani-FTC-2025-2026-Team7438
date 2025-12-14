@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.MecanumDriveSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.StorageSubsystem;
 
 
-@Autonomous(name= "RedAutoPath1", group= "Linear OpMode")
+@Autonomous(name= "FORWARD AUTO", group= "Linear OpMode")
 public class BlueAutoPath2_Close extends LinearOpMode{
     private FlywheelSubsystem flywheelSubsystem;
     private MecanumDriveSubsystem mecanumDriveSubsystem;
@@ -43,6 +43,6 @@ public class BlueAutoPath2_Close extends LinearOpMode{
         encoderTurningCommand = new EncoderTurningCommand(mecanumDriveSubsystem, telemetry, this);
 
         waitForStart();
-        encoderDriveCommand.EncoderDriveOperate(100, "FORWARD");
+        encoderDriveCommand.EncoderDriveOperate(500, "FORWARD");
     }
 }

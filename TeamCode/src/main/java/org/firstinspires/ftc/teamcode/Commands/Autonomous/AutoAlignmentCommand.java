@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Commands.Manual;
+package org.firstinspires.ftc.teamcode.Commands.Autonomous;
 
 import com.qualcomm.hardware.limelightvision.LLResult;
 import com.qualcomm.hardware.limelightvision.LLResultTypes;
@@ -6,32 +6,25 @@ import com.qualcomm.hardware.limelightvision.Limelight3A;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.Subsystems.*;
+import org.firstinspires.ftc.teamcode.Subsystems.MecanumDriveSubsystem;
 
-
-public class LimelightCamera {
+public class AutoAlignmentCommand {
     private MecanumDriveSubsystem mecanumDriveSubsystem;
-    private Gamepad gamepad;
     private LLResult result;
-    private Telemetry telemetry;
     private Limelight3A limelight;
-    private LLResultTypes.FiducialResult FResult;
 
 
-    public LimelightCamera(MecanumDriveSubsystem mecanumDriveSubsystem, Limelight3A limelight, Gamepad gamepad, Telemetry telemetry){
-        this.gamepad = gamepad;
+    public AutoAlignmentCommand(MecanumDriveSubsystem mecanumDriveSubsystem, Limelight3A limelight){
         this.mecanumDriveSubsystem = mecanumDriveSubsystem;
-        this.telemetry = telemetry;
         this.limelight = limelight;
     }
-    public void operate(Gamepad gamepad) {
-        if (gamepad.a) {
+    public void operate() {
             result = limelight.getLatestResult();
             double tx = 0;
             if (result != null && result.isValid()) {
                 tx = result.getTx(); // How far left or right the target is (degrees)
             } else {
-                tx = 0;
+                tx = 20;
             }
             while(Math.abs(tx) > 0.5) {
                 result = limelight.getLatestResult();
@@ -49,9 +42,6 @@ public class LimelightCamera {
                 mecanumDriveSubsystem.setLeftBackPower(output);
                 mecanumDriveSubsystem.setRightBackPower(-output);
                 mecanumDriveSubsystem.setRightFrontPower(-output);
-                telemetry.addData("Output", output);
-                telemetry.addData("tx", tx);
-                telemetry.update();
                 //Renewing the tx
                 result = limelight.getLatestResult();
                 if (result != null && result.isValid()) {
@@ -60,7 +50,8 @@ public class LimelightCamera {
                     tx = 0;
                 }
             }
-        }
+            mecanumDriveSubsystem.shutdown();
+
 
     }
 
@@ -68,3 +59,5 @@ public class LimelightCamera {
         mecanumDriveSubsystem.shutdown();
     }
 }
+
+
